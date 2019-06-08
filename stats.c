@@ -36,8 +36,57 @@ void main() {
                                 7,  87, 250, 230,  99,   3, 100,  90};
 
   /* Other Variable Declarations Go Here */
+  unsigned char * input1 = test; // First required input variable: An unsigned char pointer to an n-element data array
+  unsigned int input2; // Second required input variable: An unsigned integer as the size of the array
+
   /* Statistics and Printing Functions Go Here */
+  // Call the functions in the correct order
+  print_array(input1, input2)
+  sort_array(input1, input2)
+  find_median(input1, input2)
+  find_mean(input1, input2)
+  find_maximum(input1, input2)
+  find_minimum(input1, input2)
+  print_statistics(input1, input2)
 
 }
 
 /* Add other Implementation File Code Here */
+// Function definitions
+
+char print_statistics()
+{
+  return output
+}
+
+/*char print_array()
+{
+  return output
+} */
+
+/*char find_median()
+{
+  return output
+} */
+
+/*char find_mean()
+{
+  return output
+} */
+
+/*char find_maximum
+{
+  return output
+} */
+
+/*char find_minimum
+{
+  return output
+} */
+
+/*char sort_array()
+{
+  return output
+} */
+
+
