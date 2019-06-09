@@ -27,7 +27,7 @@
 /* Size of the Data Set */
 #define SIZE (40)
 
-void main() {
+int main() {
 
   unsigned char test[SIZE] = { 34, 201, 190, 154,   8, 194,   2,   6,
                               114, 88,   45,  76, 123,  87,  25,  23,
@@ -36,57 +36,62 @@ void main() {
                                 7,  87, 250, 230,  99,   3, 100,  90};
 
   /* Other Variable Declarations Go Here */
-  unsigned char * input1 = test; // First required input variable: An unsigned char pointer to an n-element data array
+  unsigned char input1; // First required input variable: An unsigned char pointer to an n-element data array
   unsigned int input2; // Second required input variable: An unsigned integer as the size of the array
+  int input3 = 7;
 
   /* Statistics and Printing Functions Go Here */
   // Call the functions in the correct order
-  print_array(input1, input2)
-  sort_array(input1, input2)
-  find_median(input1, input2)
-  find_mean(input1, input2)
-  find_maximum(input1, input2)
-  find_minimum(input1, input2)
-  print_statistics(input1, input2)
+  print_array(input3);
+  //sort_array(input1, input2);
+  //find_median(input1, input2);
+  //find_mean(input1, input2);
+  //find_maximum(input1, input2);
+  //find_minimum(input1, input2);
+  //print_statistics(input1, input2);
 
 }
 
 /* Add other Implementation File Code Here */
 // Function definitions
 
-char print_statistics()
+void print_array(unsigned int input3)
 {
-  return output
+  int  var1;
+  char var2[10];
+
+  printf("Address of var1 variable: %p\n", &var1  );
+  printf("Address of var2 variable: %p\n", &var2  );
+
 }
-
-/*char print_array()
-{
-  return output
-} */
-
-/*char find_median()
-{
-  return output
-} */
-
-/*char find_mean()
-{
-  return output
-} */
-
-/*char find_maximum
-{
-  return output
-} */
-
-/*char find_minimum
-{
-  return output
-} */
 
 /*char sort_array()
 {
-  return output
+  return output;
 } */
 
+/*int find_median()
+{
+  return output;
+} */
+
+/*float find_mean()
+{
+  return output;
+} */
+
+/*int find_maximum
+{
+  return output;
+} */
+
+/*int find_minimum
+{
+  return output;
+} */
+
+/*void print_statistics()
+{
+  printf("Hello World");
+}*/
 
