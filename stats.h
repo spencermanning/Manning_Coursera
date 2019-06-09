@@ -33,8 +33,7 @@
  *
  * @return output An unsigned char result from the function
  */
-//void print_array(unsigned char input1, unsigned int input2);
-void print_array(unsigned int input3);
+void print_array(unsigned int input1);
 
 /**
  * @brief sort_array function declaration

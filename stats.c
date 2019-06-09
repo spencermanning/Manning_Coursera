@@ -36,13 +36,13 @@ int main() {
                                 7,  87, 250, 230,  99,   3, 100,  90};
 
   /* Other Variable Declarations Go Here */
-  unsigned char input1; // First required input variable: An unsigned char pointer to an n-element data array
-  unsigned int input2; // Second required input variable: An unsigned integer as the size of the array
-  int input3 = 7;
-
+  unsigned char *input1; // An unsigned char pointer to an n-element data array
+  input1 = &test[SIZE];
+  unsigned int input2 = SIZE; // An unsigned integer as the size of the array
+  
   /* Statistics and Printing Functions Go Here */
   // Call the functions in the correct order
-  print_array(input3);
+  print_array(input1);
   //sort_array(input1, input2);
   //find_median(input1, input2);
   //find_mean(input1, input2);
@@ -55,14 +55,10 @@ int main() {
 /* Add other Implementation File Code Here */
 // Function definitions
 
-void print_array(unsigned int input3)
+void print_array(unsigned int *input1)
 {
-  int  var1;
-  char var2[10];
-
-  printf("Address of var1 variable: %p\n", &var1  );
-  printf("Address of var2 variable: %p\n", &var2  );
-
+  array = *input1
+  printf("Array: %p")
 }
 
 /*char sort_array()
