@@ -27,39 +27,46 @@
 /* Size of the Data Set */
 #define SIZE (40)
 
-int main() {
-
+int main() 
+{
   unsigned char test[SIZE] = { 34, 201, 190, 154,   8, 194,   2,   6,
                               114, 88,   45,  76, 123,  87,  25,  23,
                               200, 122, 150, 90,   92,  87, 177, 244,
                               201,   6,  12,  60,   8,   2,   5,  67,
                                 7,  87, 250, 230,  99,   3, 100,  90};
 
-  /* Other Variable Declarations Go Here */
-  unsigned char *input1; // An unsigned char pointer to an n-element data array
-  input1 = &test[SIZE];
+  // Other Variable Declarations Go Here 
+
+  // unsigned char test; // An unsigned char pointer to an n-element data array
+  // test = test;  // Figure out how to point to array
   unsigned int input2 = SIZE; // An unsigned integer as the size of the array
   
-  /* Statistics and Printing Functions Go Here */
+  // Statistics and Printing Functions Go Here 
   // Call the functions in the correct order
-  print_array(input1);
-  //sort_array(input1, input2);
-  //find_median(input1, input2);
-  //find_mean(input1, input2);
-  //find_maximum(input1, input2);
-  //find_minimum(input1, input2);
-  //print_statistics(input1, input2);
+  print_array(test, input2);  // test is the pointer to the "test" array.
+  //sort_array(test, input2);
+  //find_median(test, input2);
+  //find_mean(test, input2);
+  //find_maximum(test, input2);
+  //find_minimum(test, input2);
+  //print_statistics(test, input2);
+
+return 0;
 
 }
 
 /* Add other Implementation File Code Here */
 // Function definitions
 
-void print_array(unsigned int *input1)
+void print_array(unsigned char *var1, int input2) //Technically, Var1 points to the first element of the array. Once in the loop, the pointer is incremented to point to the next element of the array on each increment.
 {
-  array = *input1
-  printf("Array: %p")
+  for(int i = 0 ; i < input2 ; i++)
+    {
+      printf("%d ",*var1);
+      var1++;
+    }
 }
+
 
 /*char sort_array()
 {
