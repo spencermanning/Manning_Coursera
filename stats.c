@@ -19,10 +19,9 @@
  *
  */
 
-
-
 #include <stdio.h>
 #include "stats.h"
+#include <stdlib.h>
 
 /* Size of the Data Set */
 #define SIZE (40)
@@ -35,29 +34,32 @@ int main()
                               201,   6,  12,  60,   8,   2,   5,  67,
                                 7,  87, 250, 230,  99,   3, 100,  90};
 
-  // Other Variable Declarations Go Here 
+  int IntForSortedArray[SIZE] = { 34, 201, 190, 154,   8, 194,   2,   6,
+                            114, 88,   45,  76, 123,  87,  25,  23,
+                            200, 122, 150, 90,   92,  87, 177, 244,
+                            201,   6,  12,  60,   8,   2,   5,  67,
+                              7,  87, 250, 230,  99,   3, 100,  90};                              
 
-  // unsigned char test; // An unsigned char pointer to an n-element data array
-  // test = test;  // Figure out how to point to array
+  // Other Variable Declarations Go Here 
+  // unsigned char (*input1)[SIZE];// An unsigned char pointer to an n-element data array
   unsigned int input2 = SIZE; // An unsigned integer as the size of the array
   
   // Statistics and Printing Functions Go Here 
-  // Call the functions in the correct order
   print_array(test, input2);  // test is the pointer to the "test" array.
-  //sort_array(test, input2);
+  unsigned char sorted = sort_array(IntForSortedArray, input2);
   //find_median(test, input2);
   //find_mean(test, input2);
   //find_maximum(test, input2);
   //find_minimum(test, input2);
   //print_statistics(test, input2);
-
+  printf("Sorted: %d",sorted);
 return 0;
-
 }
 
 /* Add other Implementation File Code Here */
 // Function definitions
 
+// Given an array of data and a length, prints the array to the screen
 void print_array(unsigned char *var1, int input2) //Technically, Var1 points to the first element of the array. Once in the loop, the pointer is incremented to point to the next element of the array on each increment.
 {
   for(int i = 0 ; i < input2 ; i++)
@@ -65,13 +67,33 @@ void print_array(unsigned char *var1, int input2) //Technically, Var1 points to 
       printf("%d ",*var1);
       var1++;
     }
+    printf("\n\n");
 }
 
+int cmpfunc (const void * a, const void * b) {
+   return ( *(int*)a - *(int*)b );
+}
 
-/*char sort_array()
+// Given an array of data and a length, sorts the array from largest to smallest. (The zeroth Element should be the largest value, and the last element (n-1) should be the smallest value. )
+char sort_array(int *input1, int input2)
 {
-  return output;
-} */
+  int n;
+  printf("Before: ");
+  for ( n = 0 ; n < input2 ; n++) {
+    printf("%d ",input1[n]);
+  }
+  printf("\n\n");
+
+  qsort(input1, input2, sizeof(int), cmpfunc);
+
+  
+  printf("After: ");
+  for( n = 0 ; n < input2 ; n++) {
+    printf("%d ",input1[n]);
+  }
+  printf("\n\n");
+  return 0;
+} 
 
 /*int find_median()
 {
@@ -93,6 +115,7 @@ void print_array(unsigned char *var1, int input2) //Technically, Var1 points to 
   return output;
 } */
 
+//  A function that prints the statistics of an array including minimum, maximum, mean, and median
 /*void print_statistics()
 {
   printf("Hello World");
