@@ -93,9 +93,7 @@ int find_maximum(int *var1, int input2);
  *
  * @return output An unsigned char result from the function
  */
-int find_minimum(unsigned char *var1, int input2);
-
-
+int find_minimum(int *var1, int input2);
 
 /**
  * @brief print_statistics function declaration
@@ -108,6 +106,6 @@ int find_minimum(unsigned char *var1, int input2);
  * @return output An unsigned char result from the function
  */
 //void print_statistics(unsigned char input1, unsigned int input2);
-void print_statistics(unsigned char *var1, int input2);
+void print_statistics(int min, int max, float mean, float median);
 
 #endif /* __STATS_H__ */

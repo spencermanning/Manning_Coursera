@@ -29,40 +29,39 @@
 
 int main() 
 {
+  // An unsigned char pointer to an n-element data array
   unsigned char test[SIZE] = { 34, 201, 190, 154,   8, 194,   2,   6,
                               114, 88,   45,  76, 123,  87,  25,  23,
                               200, 122, 150, 90,   92,  87, 177, 244,
                               201,   6,  12,  60,   8,   2,   5,  67,
                                 7,  87, 250, 230,  99,   3, 100,  90};
 
+  // Integers
   int TestAsInt[SIZE] = { 34, 201, 190, 154,   8, 194,   2,   6,
                             114, 88,   45,  76, 123,  87,  25,  23,
                             200, 122, 150, 90,   92,  87, 177, 244,
                             201,   6,  12,  60,   8,   2,   5,  67,
                               7,  87, 250, 230,  99,   3, 100,  90};                              
-
-  // Other Variable Declarations Go Here 
-  // unsigned char (*input1)[SIZE];// An unsigned char pointer to an n-element data array
   unsigned int input2 = SIZE; // An unsigned integer as the size of the array
   
-  // Statistics and Printing Functions Go Here 
-  print_array(test, input2);  // test is the pointer to the "test" array.
+  // Call each function in order
+  print_array(test, input2); 
   int * sorted = sort_array(TestAsInt, input2);
   float median = find_median(TestAsInt, input2);
   float mean = find_mean(TestAsInt, input2);
   int max = find_maximum(TestAsInt, input2);
-  //find_minimum(test, input2);
-  //print_statistics(test, input2);
+  int min = find_minimum(TestAsInt, input2);
+  print_statistics(min, max, mean, median);
 
 return 0;
 }
 
-/* Add other Implementation File Code Here */
-// Function definitions
+//Functions//
 
 // Given an array of data and a length, prints the array to the screen
 void print_array(unsigned char *var1, int input2) //Technically, Var1 points to the first element of the array. Once in the loop, the pointer is incremented to point to the next element of the array on each increment.
 {
+  printf("Printed elements: ");
   for(int i = 0 ; i < input2 ; i++)
     {
       printf("%d ",*var1);
@@ -79,16 +78,10 @@ int cmpfunc (const void * a, const void * b) {
 int * sort_array(int *input1, int input2)
 {
   int n;
-  printf("Before: ");
-  for ( n = 0 ; n < input2 ; n++) {
-    printf("%d ",input1[n]);
-  }
-  printf("\n\n");
+  printf("Sorted: ");
 
   qsort(input1, input2, sizeof(int), cmpfunc);
 
-  
-  printf("After: ");
   for( n = 0 ; n < input2 ; n++) {
     printf("%d ",input1[n]);
   }
@@ -100,19 +93,20 @@ float find_median(int * sorted, int input2)
 {
   float median;
   if (input2 % 2 == 0) {  // Even number of elements
-    printf("It's EVEN\n");
+    // printf("EVEN number of elements\n");
     int halfnumminus = input2 / 2;
-    printf("halfnumminus: %d\n",halfnumminus);
+    //printf("halfnumminus: %d\n",halfnumminus);
     int halfnumplus = input2 / 2 + 1;
-    printf("halfnumplus: %d\n",halfnumplus);
-    float median = (sorted[halfnumminus] + sorted[halfnumplus]) / 2;
-    printf("median: %f\n",median);
+    //printf("halfnumplus: %d\n",halfnumplus);
+    median = (sorted[halfnumminus] + sorted[halfnumplus]) / 2;
+    // printf("median: %f\n",median);
   }
   else {  // Odd number of elements
-    printf("It's ODD\n");
+    // printf("ODD number of elements\n");
     int halfnum = input2 / 2;
-    float median = sorted[halfnum];
+    median = sorted[halfnum];
   }
+  // printf("median: %f\n",median);
   return median;
 } 
 
@@ -125,34 +119,45 @@ float find_mean(int *var1, int input2)
     sum = sum + var1[n];
   }
   mean = sum / input2;
-  printf("Mean: %f\n",mean);
+  // printf("Mean: %f\n",mean);
   return mean;
 } 
 
 int find_maximum(int *var1, int input2)
 {
-  for (int n = 0 ; n < input2 ; n++)
+  int max = var1[0];
+
+  for (int n = 1 ; n < input2 ; n++)
   {
-    // if (n = 0)
-    // {
-    //   int current = var1[n];
-    //   int next = var1[n+1];
-    // }
-    
+    if (var1[n] > max)
+      max = var1[n];
   }
-  int max = fmax(2,1);
-  printf("fmin is: %d",max);
+  
+  // printf("Max Number is: %d\n",max);
   return max;
 } 
 
-/*int find_minimum
+int find_minimum(int *var1, int input2)
 {
+  int min = var1[0];
+
+  for (int n = 1 ; n < input2 ; n++)
+  {
+    if (var1[n] < min)
+      min = var1[n];
+  }
+  
+  // printf("Min Number is: %d",min);
   return min;
-} */
+} 
 
 //  A function that prints the statistics of an array including minimum, maximum, mean, and median
-/*void print_statistics()
+void print_statistics(int min, int max, float mean, float median)
 {
-  printf("Hello World");
-}*/
+  printf("Statistics: \n");
+  printf("Min: %d\n",min);
+  printf("Max: %d\n",max);
+  printf("Mean: %f\n",mean);
+  printf("Median: %f\n",median);
+}
 
