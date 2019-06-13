@@ -28,10 +28,10 @@
  *
  * Given an array of data and a length, prints the array to the screen
  *
- * @param input1 An unsigned char pointer to an n-element data array
+ * @param input1 An int pointer to an n-element data array
  * @param input2 An unsigned integer as the size of the array
  *
- * @return output An unsigned char result from the function
+ * @return output No output because of the void function
  */
 void print_array(unsigned char *var1, int input2);
 
@@ -40,7 +40,7 @@ void print_array(unsigned char *var1, int input2);
  *
  * Given an array of data and a length, sorts the array from largest to smallest. (The zeroth Element should be the largest value, and the last element (n-1) should be the smallest value. )
  *
- * @param input1 An unsigned char pointer to an n-element data array
+ * @param input1 An int pointer to an n-element data array
  * @param input2 An unsigned integer as the size of the array
  *
  * @return output An unsigned char result from the function
@@ -52,7 +52,7 @@ int * hellofunc();
  *
  * Given an array of data and a length, returns the median value
  *
- * @param input1 An unsigned char pointer to an n-element data array
+ * @param input1 An int pointer to an n-element data array
  * @param input2 An unsigned integer as the size of the array
  *
  * @return output An unsigned char result from the function
@@ -64,7 +64,7 @@ float find_median(int *var1, int input2);
  *
  * Given an array of data and a length, returns the mean
  *
- * @param input1 An unsigned char pointer to an n-element data array
+ * @param input1 An int pointer to an n-element data array
  * @param input2 An unsigned integer as the size of the array
  *
  * @return output An unsigned char result from the function
@@ -76,7 +76,7 @@ float find_mean(int *var1, int input2);
  *
  * Given an array of data and a length, returns the maximum
  *
- * @param input1 An unsigned char pointer to an n-element data array
+ * @param input1 An int pointer to an n-element data array
  * @param input2 An unsigned integer as the size of the array
  *
  * @return output An unsigned char result from the function
@@ -88,7 +88,7 @@ int find_maximum(int *var1, int input2);
  *
  * Given an array of data and a length, returns the minimum
  *
- * @param input1 An unsigned char pointer to an n-element data array
+ * @param input1 An int pointer to an n-element data array
  * @param input2 An unsigned integer as the size of the array
  *
  * @return output An unsigned char result from the function
@@ -100,8 +100,10 @@ int find_minimum(int *var1, int input2);
  *
  * A function that prints the statistics of an array including minimum, maximum, mean, and median.
  *
- * @param input1 An unsigned char pointer to an n-element data array
- * @param input2 An unsigned integer as the size of the array
+ * @param input1 Unsigned int as the minimum number
+ * @param input2 Unsigned int as the maximum number
+ * @param input1 Float as the mean value
+ * @param input2 Float as the median value
  *
  * @return output An unsigned char result from the function
  */
