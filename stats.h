@@ -45,8 +45,8 @@ void print_array(unsigned char *var1, int input2);
  *
  * @return output An unsigned char result from the function
  */
-char sort_array(int *var1, int input2);
-
+int * sort_array(int *var1, int input2);
+int * hellofunc();
 /**
  * @brief find_median function declaration
  *
@@ -57,7 +57,7 @@ char sort_array(int *var1, int input2);
  *
  * @return output An unsigned char result from the function
  */
-int find_median(unsigned char *var1, int input2);
+float find_median(int *var1, int input2);
 
 /**
  * @brief find_mean function declaration
@@ -69,7 +69,7 @@ int find_median(unsigned char *var1, int input2);
  *
  * @return output An unsigned char result from the function
  */
-float find_mean(unsigned char *var1, int input2);
+float find_mean(int *var1, int input2);
 
 /**
  * @brief find_maximum function declaration
@@ -81,7 +81,7 @@ float find_mean(unsigned char *var1, int input2);
  *
  * @return output An unsigned char result from the function
  */
-int find_maximum(unsigned char *var1, int input2);
+int find_maximum(int *var1, int input2);
 
 /**
  * @brief find_minimum function declaration

@@ -22,6 +22,7 @@
 #include <stdio.h>
 #include "stats.h"
 #include <stdlib.h>
+#include <math.h>
 
 /* Size of the Data Set */
 #define SIZE (40)
@@ -34,7 +35,7 @@ int main()
                               201,   6,  12,  60,   8,   2,   5,  67,
                                 7,  87, 250, 230,  99,   3, 100,  90};
 
-  int IntForSortedArray[SIZE] = { 34, 201, 190, 154,   8, 194,   2,   6,
+  int TestAsInt[SIZE] = { 34, 201, 190, 154,   8, 194,   2,   6,
                             114, 88,   45,  76, 123,  87,  25,  23,
                             200, 122, 150, 90,   92,  87, 177, 244,
                             201,   6,  12,  60,   8,   2,   5,  67,
@@ -46,13 +47,13 @@ int main()
   
   // Statistics and Printing Functions Go Here 
   print_array(test, input2);  // test is the pointer to the "test" array.
-  unsigned char sorted = sort_array(IntForSortedArray, input2);
-  //find_median(test, input2);
-  //find_mean(test, input2);
-  //find_maximum(test, input2);
+  int * sorted = sort_array(TestAsInt, input2);
+  float median = find_median(TestAsInt, input2);
+  float mean = find_mean(TestAsInt, input2);
+  int max = find_maximum(TestAsInt, input2);
   //find_minimum(test, input2);
   //print_statistics(test, input2);
-  printf("Sorted: %d",sorted);
+
 return 0;
 }
 
@@ -71,11 +72,11 @@ void print_array(unsigned char *var1, int input2) //Technically, Var1 points to 
 }
 
 int cmpfunc (const void * a, const void * b) {
-   return ( *(int*)a - *(int*)b );
+   return ( *(int*)b - *(int*)a );
 }
 
 // Given an array of data and a length, sorts the array from largest to smallest. (The zeroth Element should be the largest value, and the last element (n-1) should be the smallest value. )
-char sort_array(int *input1, int input2)
+int * sort_array(int *input1, int input2)
 {
   int n;
   printf("Before: ");
@@ -92,27 +93,61 @@ char sort_array(int *input1, int input2)
     printf("%d ",input1[n]);
   }
   printf("\n\n");
-  return 0;
+  return input1;
 } 
 
-/*int find_median()
+float find_median(int * sorted, int input2)
 {
-  return output;
-} */
+  float median;
+  if (input2 % 2 == 0) {  // Even number of elements
+    printf("It's EVEN\n");
+    int halfnumminus = input2 / 2;
+    printf("halfnumminus: %d\n",halfnumminus);
+    int halfnumplus = input2 / 2 + 1;
+    printf("halfnumplus: %d\n",halfnumplus);
+    float median = (sorted[halfnumminus] + sorted[halfnumplus]) / 2;
+    printf("median: %f\n",median);
+  }
+  else {  // Odd number of elements
+    printf("It's ODD\n");
+    int halfnum = input2 / 2;
+    float median = sorted[halfnum];
+  }
+  return median;
+} 
 
-/*float find_mean()
+float find_mean(int *var1, int input2)
 {
-  return output;
-} */
+  float sum = 0;
+  float mean;
+  for (int n = 0 ; n < input2 ; n++)
+  {
+    sum = sum + var1[n];
+  }
+  mean = sum / input2;
+  printf("Mean: %f\n",mean);
+  return mean;
+} 
 
-/*int find_maximum
+int find_maximum(int *var1, int input2)
 {
-  return output;
-} */
+  for (int n = 0 ; n < input2 ; n++)
+  {
+    // if (n = 0)
+    // {
+    //   int current = var1[n];
+    //   int next = var1[n+1];
+    // }
+    
+  }
+  int max = fmax(2,1);
+  printf("fmin is: %d",max);
+  return max;
+} 
 
 /*int find_minimum
 {
-  return output;
+  return min;
 } */
 
 //  A function that prints the statistics of an array including minimum, maximum, mean, and median
