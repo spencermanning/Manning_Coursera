@@ -29,27 +29,20 @@
 include sources.mk
 
 # Platform Overrides: Choose Host Platform if none defined
-ifndef $(PLATFORM)
-	# Compiler Flags and Defines
-	PLATFORM = HOST
-	CC = gcc
-	CFLAGS = -D$(PLATFORM) -Wall -Werror -g -O0 -std=c99 
-endif
-
-#------------------------------------------
-ifeq ($(PLATFORM),HOST)
-
-	# Compiler Flags and Defines
-	CC = gcc
-	CFLAGS = -D$(PLATFORM) -Wall -Werror -g -O0 -std=c99 
-
-endif
+#ifndef $(PLATFORM3)
+#	# Compiler Flags and Defines
+#	PLATFORM = HOST
+#	CC = gcc
+#	CFLAGS = -D$(PLATFORM) -Wall -Werror -g -O0 -std=c99 
+#	LDFLAGS = $(INCLUDES)
+#endif
+PLATFORM = HOST
 #------------------------------------------
 ifeq ($(PLATFORM),MSP432)
 
 	# Architectures Specific Flags
 	LINKER_FILE = ../msp432p401r.lds
-	CPU = cortex-m0plus
+	CPU = cortex-m4
 	ARCH = thumb
 	SPECS = nosys.specs
 
@@ -57,9 +50,16 @@ ifeq ($(PLATFORM),MSP432)
 	CC = arm-none-eabi-gcc
 	LD = arm-none-eabi-ld
 	SIZE = /usr/bin/arm-none-eabi-size
-	LDFLAGS = -Wl,-Map=$(TARGET).map -T $(LINKER_FILE)
+	LDFLAGS = -Wl,-Map=$(TARGET).map -T $(LINKER_FILE) $(INCLUDES)
 	CFLAGS = -mcpu=$(CPU) -m$(ARCH) --specs=$(SPECS) -Wall -D$(PLATFORM)
-	CPPFLAGs = INCLUDES   # Does this work???
+	CPPFLAGs = 
+
+else	# If the platform is the host
+	# Compiler Flags and Defines
+	CC = gcc
+	CFLAGS = -D$(PLATFORM) -Wall -Werror -g -O0 -std=c99 
+	LDFLAGS = $(INCLUDES)
+
 endif
 
 TARGET = c1m2
@@ -73,31 +73,28 @@ OBJSD = $(SOURCES:.c=.d)  # Associate .c file with .d file of same name
 
 # Rule to only generate preprocessed output (*.i) files
 %.i : %.c
-	$(CC) -E -o $@ $< -D$(PLATFORM)
-	$(CC) -MM $(CFLAGS) $*.c > $*.d
+	$(CC) $(CFLAGS) $(CPPFLAGS) $(LDFLAGS) -c $< -o $@
 
 # Rule to only generate assembly output (*.asm) files
 %.asm : %.i
-	$(CC) -S $< -D$(PLATFORM)
-	$(CC) -MM $(CFLAGS) $*.i > $*.d
+	$(CC) $(CFLAGS) $(CPPFLAGS) $(LDFLAGS) -c $< -o $@
+	objdump -S $@
 
 # Rule to only generate .o files
 %.o : %.c
-	$(CC) -c $< $(CFLAGS) -o $@ -D$(PLATFORM)
+	$(CC) $(CFLAGS) $(CPPFLAGS) $(LDFLAGS) -c $< -o $@
 	$(CC) -MM $(CFLAGS) $*.c > $*.d
 
 .PHONY: build
 build: compile-all
-#ifeq ($(PLATFORM),MSP432)
-#	arm-none-eabi-size -Atd c1m2.out
-#endif
 
-.PHONY: compile-all -D$(PLATFORM)
+.PHONY: compile-all -D$(PLATFORM) $(SOURCES)
 compile-all: $(TARGET).out 
 
-$(TARGET).out: $(OBJS)
-	$(CC) $(OBJS) $(CFLAGS) $(LDFLAGS) -o $@ -D$(PLATFORM)
+$(TARGET).out: $(OBJS) $(SOURCES)
+	$(CC) $(OBJS) $(CFLAGS) $(CPPFLAGS) $(LDFLAGS) -o $@ -D$(PLATFORM)
+	size $(TARGET).out
 
 .PHONY: clean
 clean:
-	rm -f $(OBJSI) $(OBJSASM) $(OBJSS) $(OBJS) $(OBJSD) $(TARGET).out $(TARGET).map
+	rm -f *.asm *.i *.d *.map *.o *.out

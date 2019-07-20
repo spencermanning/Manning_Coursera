@@ -9,15 +9,12 @@
 #
 #*****************************************************************************
 
-# Add your Source files to this variable
-SOURCES =			\
-			./main.c	\
-			./memory.c	\
-			#./interrupts_msp432p401r_gcc.c	\
-			#./startup_msp432p401r_gcc.c	\
-			#./system_msp432p401r.c	\
+ifeq ($(PLATFORM),MSP432)
+	SOURCES = main.c memory.c interrupts_msp432p401r_gcc.c startup_msp432p401r_gcc.c system_msp432p401r.c
+	INCLUDES = -I../include/common -I../include/CMSIS -I../include/msp432
 
-
-# Add your include paths to this variable
-INCLUDES = -I../include/common/memory.h	-I../include/common/platform.h
+else
+	SOURCES =	./main.c memory.c
+	INCLUDES = -I../include/common
+endif
 
